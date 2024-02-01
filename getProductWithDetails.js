@@ -35,13 +35,13 @@ const main = async () => {
   });
 
   //   console.log(bookData);
-  for (let [index,product] of bookData.splice(0, 6).entries()) {
+  for (let [index, product] of bookData.splice(0, 6).entries()) {
     const productUrl = mainUrl;
     try {
       await page.goto(`${productUrl}${convertedString(product.productPath)}`, {
         waitUntil: "networkidle2",
       });
-      const data = await page.evaluate(() => {
+      const productDetails = await page.evaluate(() => {
         //to get image
         const imgElement = document.querySelector("img.photoswipe__image"); // Update the selector accordingly
         if (!imgElement) {
@@ -51,35 +51,33 @@ const main = async () => {
           imgElement.getAttribute("data-photoswipe-src") ||
           imgElement.getAttribute("src");
 
-          //get the tags
-                const radioButtons = document.querySelectorAll(
-                  '.variant-input-wrap input[type="radio"]'
-                );
-                const values = [];
+        //get the tags
+        const radioButtonsTags = document.querySelectorAll(
+          '.variant-input-wrap input[type="radio"]'
+        );
+        const TagsValues = [];
 
-                radioButtons.forEach((radio) => {
-                  const label = radio.nextElementSibling;
-                  if (label) {
-                    values.push(label.innerText.trim());
-                  }
-                });
-
-        console.log(values,"values src", src);
-
-
-        return {src,values};
+        radioButtonsTags.forEach((radio) => {
+          const label = radio.nextElementSibling;
+          if (label) {
+            TagsValues.push(label.innerText.trim());
+          }
+        });
+        return { src, TagsValues };
       });
-      if(data) {
-        console.log("mainnnn", data);
+      if (productDetails) {
         // const mainImage = await getImagesFromSrcset(productUrl,product);
-         bookData[index] = { ...product, imageUrl: data.src,tags:data.values };
+        bookData[index] = {
+          ...product,
+          mainImageUrl: productDetails.src,
+          productTags: productDetails.TagsValues,
+        };
       }
-      
     } catch (err) {
       console.error("Error::", err);
     }
   }
-    console.log('bookData',bookData);
+  console.log("bookData", bookData);
   await browser.close();
 };
 main();
