@@ -1,5 +1,5 @@
 const puppeteer = require("puppeteer");
-const getImagesFromSrcset = require("./utils/getImagesFromSrcset");
+const fs = require("fs");
 
 const url = "https://www.casewale.com/collections/iphone-15-pro-max";
 const mainUrl = "https://www.casewale.com";
@@ -63,21 +63,61 @@ const main = async () => {
             TagsValues.push(label.innerText.trim());
           }
         });
-        return { src, TagsValues };
+
+        //get Features
+        const featureTitleElement  = document.querySelector('.accordion-container .set:first-child .content');
+        console.log('Feee',featureTitleElement)
+        if (featureTitleElement) {
+          const ulElement =
+            featureTitleElement.nextElementSibling.querySelector("ol");
+
+          if (ulElement) {
+            const listItems = Array.from(
+              ulElement.querySelectorAll("li") ||
+                ulElement.querySelectorAll("ol")
+            );
+            return listItems.map((li) => li.textContent.trim());
+          }
+        }
+        console.log("illll", featureTitleElement);
+
+        return { src, TagsValues, featureTitleElement };
       });
+
+      // try {
+      //   //get all Features
+      //   await page.waitForSelector(".accordion-container ul");
+
+      //   if (ulElementHTML) {
+      //     bookData[index] = {
+      //       ...product,
+      //       featureHtml: ulElementHTML,
+      //     };
+      //     // featureList.push(ulElementHTML);
+      //   }
+      // } catch (err) {
+      //   console.error("Error in Feature", err);
+      // }
+      // console.log("Feature", productDetails);
+
       if (productDetails) {
-        // const mainImage = await getImagesFromSrcset(productUrl,product);
         bookData[index] = {
           ...product,
           mainImageUrl: productDetails.src,
           productTags: productDetails.TagsValues,
+          Features: productDetails.featureTitleElement,
         };
       }
     } catch (err) {
       console.error("Error::", err);
     }
   }
-  console.log("bookData", bookData);
+  const jsonString = JSON.stringify(bookData, null, 2);
+
+  // Write JSON data to a file
+  fs.writeFileSync("output.json", jsonString, "utf-8");
+
+  console.log("bookData", bookData.splice(0, 3));
   await browser.close();
 };
 main();
