@@ -68,8 +68,10 @@ const main = async () => {
         const featureTitleElement  = document.querySelector('.accordion-container .set:first-child .content');
         console.log('Feee',featureTitleElement)
         if (featureTitleElement) {
-          const ulElement =
-            featureTitleElement.nextElementSibling.querySelector("ol");
+         let ulElement;
+         if (featureTitleElement && featureTitleElement.nextElementSibling) {
+            ulElement = featureTitleElement.nextElementSibling.querySelector("ol");
+         }
 
           if (ulElement) {
             const listItems = Array.from(
@@ -109,7 +111,7 @@ const main = async () => {
         };
       }
     } catch (err) {
-      console.error("Error::", err);
+      console.error("Error::", err?.message || err);
     }
   }
   const jsonString = JSON.stringify(bookData, null, 2);
