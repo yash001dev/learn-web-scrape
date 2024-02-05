@@ -10,21 +10,17 @@ const main = async () => {
   const browser = await puppeteer.launch({ headless: false });
 
   const page = await browser.newPage();
-  await page.goto(url, { waitUntil: "networkidle2" });
+  // page.on("console", (consoleObj) => console.log(consoleObj.text()));
+  await page.goto(url, { waitUntil: "load" });
 
   const bookData = await page.evaluate(() => {
     const bookPods = Array.from(
       document.querySelectorAll(".grid-product__content")
     );
 
-    console.log("BookPods", bookPods);
     const data = bookPods.map((pod) => {
-      // const title=pod.querySelector('h3').innerText;
-      // const price=pod.querySelector('.price_color').innerText;
-      // const rating=pod.querySelector('.star-rating').classList[1];
-      // const image=pod.querySelector('img').src;
-      // return {title,price,rating,image}
-      const price = pod.querySelector("a .money").innerHTML;
+      const priceElement = pod.querySelector("a .money");
+      const price = priceElement ? priceElement.innerHTML : null;
       const title = pod.querySelector(".grid-product__title").innerText;
       const imgSrc = pod.querySelector("a ");
       const imgPath = imgSrc.getAttribute("href");
@@ -34,8 +30,8 @@ const main = async () => {
     return data;
   });
 
-  //   console.log(bookData);
   for (let [index, product] of bookData.splice(0, 6).entries()) {
+    console.log("Inside loop Entered...")
     const productUrl = mainUrl;
     try {
       await page.goto(`${productUrl}${convertedString(product.productPath)}`, {
@@ -43,6 +39,7 @@ const main = async () => {
       });
       const productDetails = await page.evaluate(() => {
         //to get image
+        console.log("Inside productDetails...")
         const imgElement = document.querySelector("img.photoswipe__image"); // Update the selector accordingly
         if (!imgElement) {
           throw new Error("Image element not found");
@@ -64,44 +61,21 @@ const main = async () => {
           }
         });
 
+        console.log("Feature start here...")
+
         //get Features
-        const featureTitleElement  = document.querySelector('.accordion-container .set:first-child .content');
-        console.log('Feee',featureTitleElement)
-        if (featureTitleElement) {
-         let ulElement;
-         if (featureTitleElement && featureTitleElement.nextElementSibling) {
-            ulElement = featureTitleElement.nextElementSibling.querySelector("ol");
-         }
-
-          if (ulElement) {
-            const listItems = Array.from(
-              ulElement.querySelectorAll("li") ||
-                ulElement.querySelectorAll("ol")
-            );
-            return listItems.map((li) => li.textContent.trim());
-          }
-        }
-        console.log("illll", featureTitleElement);
-
-        return { src, TagsValues, featureTitleElement };
+        const listType = document.querySelector('.accordion-container .set:nth-child(1) ol') ? 'ol' : 'ul';
+        console.log("listType", listType);
+        //I want get the html of the first accordion including ul or ol
+        const listElement = document.querySelector(`.accordion-container .set:nth-child(1) ${listType}`);
+        const listHTML = listElement ? listElement.outerHTML : null;
+        //Store listElement html to feature variable into string
+        const featureHtml = listElement ? listHTML : null;
+       
+        return { src, TagsValues, featureTitleElement: featureHtml};
       });
 
-      // try {
-      //   //get all Features
-      //   await page.waitForSelector(".accordion-container ul");
-
-      //   if (ulElementHTML) {
-      //     bookData[index] = {
-      //       ...product,
-      //       featureHtml: ulElementHTML,
-      //     };
-      //     // featureList.push(ulElementHTML);
-      //   }
-      // } catch (err) {
-      //   console.error("Error in Feature", err);
-      // }
-      // console.log("Feature", productDetails);
-
+     
       if (productDetails) {
         bookData[index] = {
           ...product,
@@ -120,6 +94,6 @@ const main = async () => {
   fs.writeFileSync("output.json", jsonString, "utf-8");
 
   console.log("bookData", bookData.splice(0, 3));
-  await browser.close();
+  // await browser.close();
 };
 main();
