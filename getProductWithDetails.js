@@ -35,7 +35,7 @@ const main = async () => {
     const productUrl = mainUrl;
     try {
       await page.goto(`${productUrl}${convertedString(product.productPath)}`, {
-        waitUntil: "networkidle2",
+        waitUntil: "load",
       });
       const productDetails = await page.evaluate(() => {
         //to get image
@@ -61,9 +61,8 @@ const main = async () => {
           }
         });
 
-        console.log("Feature start here...")
-
         //get Features
+        console.log("Feature start here...")
         const listType = document.querySelector('.accordion-container .set:nth-child(1) ol') ? 'ol' : 'ul';
         console.log("listType", listType);
         //I want get the html of the first accordion including ul or ol
@@ -71,9 +70,22 @@ const main = async () => {
         const listHTML = listElement ? listElement.outerHTML : null;
         //Store listElement html to feature variable into string
         const featureHtml = listElement ? listHTML : null;
+
+        //Get thumbnail images
        
-        return { src, TagsValues, featureTitleElement: featureHtml};
+          const thumbnailImages = Array.from(
+            document.querySelectorAll(".slick-track .slick-slide img")
+          );
+          console.log("thumbnailImages:", thumbnailImages);
+          const thumbnailImagesSrc = thumbnailImages.map((img) => {
+            return img.getAttribute("data-photoswipe-src");
+          });
+          const purifyThumbnailImages = thumbnailImagesSrc.filter((img) => img);
+
+          return { src, TagsValues, featureTitleElement: featureHtml, thumbnailImages: purifyThumbnailImages};
       });
+
+      
 
      
       if (productDetails) {
@@ -82,6 +94,7 @@ const main = async () => {
           mainImageUrl: productDetails.src,
           productTags: productDetails.TagsValues,
           Features: productDetails.featureTitleElement,
+          thumbnailImages: productDetails.thumbnailImages,
         };
       }
     } catch (err) {
