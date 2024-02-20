@@ -5,6 +5,7 @@ const csvParser = require('csv-parser');
 const fastcsv = require('fast-csv');
 const _ = require('lodash');
 const productRow = require('./constant/productRow');
+const renameImageFile = require('./renameImageFile');
 
 // Cvv File Example
 // ID,Type,SKU,Name,Published,Is featured?,Visibility in catalog,Short description,Description,Date sale price starts,Date sale price ends,Tax status,Tax class,In stock?,Stock,Low stock amount,Backorders allowed?,Sold individually?,Weight (kg),Length (cm),Width (cm),Height (cm),Allow customer reviews?,Purchase note,Sale price,Regular price,Categories,Tags,Shipping class,Images,Download limit,Download expiry days,Parent,Grouped products,Upsells,Cross-sells,External URL,Button text,Position,Attribute 1 name,Attribute 1 value(s),Attribute 1 visible,Attribute 1 global
@@ -34,16 +35,24 @@ const createSkuWithAttribute = (csvFileName, option = {}) => {
         .on('data', (row) => {
           rows.push(row);
         })
-        .on('end', () => {
+        .on('end', async () => {
+          // Get Parent Image Information
+          const parentImageString = await renameImageFile(
+            productName,
+            'https://www.example.com/images'
+          );
+          console.log('Parent Image:', parentImageString);
           // Add the parent product row
           const newParentRow = {
             ...productRow,
             // ID: rows.length + 1,
-            Type: 'simple',
+            Type: 'variable',
             SKU: parentProductsku,
             Name: productName,
             Parent: '',
             'Attribute 1 value(s)': '',
+            Position: 0,
+            Images: parentImageString,
             ...option,
           };
           rows.push(newParentRow);
@@ -58,6 +67,7 @@ const createSkuWithAttribute = (csvFileName, option = {}) => {
               Name: `${productName} - ${attributeValues[index]}`,
               Parent: parentProductsku,
               'Attribute 1 value(s)': attributeValues[index],
+              Position: index + 1,
               ...option,
             };
             rows.push(newRow);

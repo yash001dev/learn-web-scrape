@@ -6,8 +6,7 @@ const {
 
 // createColumnHeader();
 
-// renameImageFile(
-//     'iphone 13',
-//     'https://www.example.com/images/'
-// );
+// renameImageFile('iphone 13', 'https://www.example.com/images/').then((data) => {
+//   console.log('URLLL:', data);
+// });
 createSkuWithAttribute('./output.csv');
