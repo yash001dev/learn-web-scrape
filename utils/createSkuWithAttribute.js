@@ -3,7 +3,6 @@ const fs = require('fs');
 const readline = require('readline');
 const csvParser = require('csv-parser');
 const fastcsv = require('fast-csv');
-const _ = require('lodash');
 const productRow = require('./constant/productRow');
 const renameImageFile = require('./renameImageFile');
 
@@ -11,6 +10,7 @@ const renameImageFile = require('./renameImageFile');
 // ID,Type,SKU,Name,Published,Is featured?,Visibility in catalog,Short description,Description,Date sale price starts,Date sale price ends,Tax status,Tax class,In stock?,Stock,Low stock amount,Backorders allowed?,Sold individually?,Weight (kg),Length (cm),Width (cm),Height (cm),Allow customer reviews?,Purchase note,Sale price,Regular price,Categories,Tags,Shipping class,Images,Download limit,Download expiry days,Parent,Grouped products,Upsells,Cross-sells,External URL,Button text,Position,Attribute 1 name,Attribute 1 value(s),Attribute 1 visible,Attribute 1 global
 
 const createSkuWithAttribute = (csvFileName, option = {}) => {
+  const imageBaseUrl = 'https://www.example.com/images';
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -26,7 +26,6 @@ const createSkuWithAttribute = (csvFileName, option = {}) => {
       const skus = attributeValues.map(
         (value) => `${parentProductsku}-${value.trim().replace(/\s/g, '-')}`
       );
-      console.log('SKUs:', skus);
 
       const rows = [];
 
@@ -38,11 +37,15 @@ const createSkuWithAttribute = (csvFileName, option = {}) => {
         })
         .on('end', async () => {
           // Get Parent Image Information
-          const parentImageString = await renameImageFile(
+          const imageData = await renameImageFile(
             productName,
-            'https://www.example.com/images'
+            imageBaseUrl,
+            skus
           );
-          console.log('Parent Image:', parentImageString);
+
+          const { mainPath, variantPath } = imageData;
+          // Convert the comma-separated attributes to an array
+          const attributeImages = variantPath.split(',');
           // Add the parent product row
           const newParentRow = {
             ...productRow,
@@ -53,7 +56,7 @@ const createSkuWithAttribute = (csvFileName, option = {}) => {
             Parent: '',
             'Attribute 1 value(s)': '',
             Position: 0,
-            Images: parentImageString,
+            Images: mainPath,
             ...option,
           };
           rows.push(newParentRow);
@@ -68,7 +71,10 @@ const createSkuWithAttribute = (csvFileName, option = {}) => {
               Name: `${productName} - ${attributeValues[index]}`,
               Parent: parentProductsku,
               'Attribute 1 value(s)': attributeValues[index],
+              // here 2 is what user enter to show as first main product
+              // Images: `${imageBaseUrl}/${productName}_${[index + 1 + Number(productCount)]}.jpg`,
               Position: index + 1,
+              Images: attributeImages[index],
               ...option,
             };
             rows.push(newRow);
