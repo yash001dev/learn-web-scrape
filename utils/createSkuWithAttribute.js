@@ -16,15 +16,16 @@ const createSkuWithAttribute = (csvFileName, option = {}) => {
     output: process.stdout,
   });
 
+  // Step 1: Ask for the product name
   rl.question('Enter the product name📄:  ', (productName) => {
     const parentProductsku = productName.trim().replace(/\s/g, '-');
 
+    // Step 2: Ask for the attributes
     rl.question('Enter the attributes (comma-separated)📏: ', (attributes) => {
       const attributeValues = attributes.split(',');
       const skus = attributeValues.map(
         (value) => `${parentProductsku}-${value.trim().replace(/\s/g, '-')}`
       );
-
       console.log('SKUs:', skus);
 
       const rows = [];
