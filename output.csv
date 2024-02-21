@@ -4,22 +4,26 @@ variation,Iphone-15-Premium-Silicone-Case-Red,Iphone 15 Premium Silicone Case - 
 variation,Iphone-15-Premium-Silicone-Case-Green,Iphone 15 Premium Silicone Case - Green,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,Iphone-15-Premium-Silicone-Case,,,,,,,Color,Green,1,1
 variation,Iphone-15-Premium-Silicone-Case-Blue,Iphone 15 Premium Silicone Case - Blue,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,Iphone-15-Premium-Silicone-Case,,,,,,,Color,Blue,1,1
 variation,Iphone-15-Premium-Silicone-Case-Purple,Iphone 15 Premium Silicone Case - Purple,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,Iphone-15-Premium-Silicone-Case,,,,,,,Color,Purple,1,1
-simple,Iphone-Bhumik,Iphone Bhumik,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,,,,,,,0,Color,,1,1
-variation,Iphone-Bhumik-red,Iphone Bhumik - red,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,Iphone-Bhumik,,,,,,1,Color,red,1,1
-variation,Iphone-Bhumik-green,Iphone Bhumik - green,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,Iphone-Bhumik,,,,,,2,Color,green,1,1
-simple,Newew,Newew,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,,,,,,,0,Color,,1,1
-variation,Newew-ea,Newew - ea,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,Newew,,,,,,1,Color,ea,1,1
-simple,sa,sa,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,,,,,,,0,Color,,1,1
-variation,sa-sa,sa - sa,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,sa,,,,,,1,Color,sa,1,1
-simple,New,New,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,,,,,,,0,Color,,1,1
-variation,New-Red,New - Red,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,New,,,,,,1,Color,Red,1,1
-simple,ds,ds,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,,,,,,,0,Color,,1,1
-variation,ds-sd,ds - sd,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,ds,,,,,,1,Color,sd,1,1
-simple,ssdsa,ssdsa,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,,,,,,,0,Color,,1,1
-variation,ssdsa-s,ssdsa - s,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,ssdsa,,,,,,1,Color,s,1,1
-simple,dss,dss,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,"https://www.example.com/images/dss_1.jpg,https://www.example.com/images/dss_3.jpg,https://www.example.com/images/dss_2.jpg",,,,,,,,,0,Color,,1,1
-variation,dss-bhumik,dss - bhumik,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,dss,,,,,,1,Color,bhumik,1,1
-variation,dss-red,dss - red,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,dss,,,,,,2,Color,red,1,1
-simple,erere,erere,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,"https://www.example.com/images/erere_3.jpg, https://www.example.com/images/erere_2.jpg, https://www.example.com/images/erere_1.jpg",,,,,,,,,0,Color,,1,1
-variation,erere-rere,erere - rere,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,erere,,,,,,1,Color,rere,1,1
-variation,erere-rererere,erere - rererere,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,erere,,,,,,2,Color,rererere,1,1
+variable,New-test-2,New test 2,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,,,,,,,0,Color,,1,1
+variation,New-test-2-red,New test 2 - red,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,New-test-2,,,,,,1,Color,red,1,1
+variable,test-6,test 6,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/test_6_1.jpg,,,,,,,,,0,Color,,1,1
+variation,test-6-bb,test 6 - bb,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,,,,test-6,,,,,,1,Color,bb,1,1
+variable,Iphone-11,Iphone 11 ,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,"https://www.example.com/images/Iphone_11_1.jpg, https://www.example.com/images/Iphone_11_3.jpg, https://www.example.com/images/Iphone_11_2.jpg",,,,,,,,,0,Color,,1,1
+variation,Iphone-11-red,Iphone 11  - red,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,Iphone 11  _ red,,,Iphone-11,,,,,,1,Color,red,1,1
+variation,Iphone-11-blue,Iphone 11  - blue,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,Iphone 11  _ blue,,,Iphone-11,,,,,,2,Color,blue,1,1
+variable,Iphone-16-Pro,Iphone 16 Pro,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,"https://www.example.com/images/Iphone_16_Pro_1.jpg, https://www.example.com/images/Iphone_16_Pro_2.jpg, https://www.example.com/images/Iphone_16_Pro_3.jpg",,,,,,,,,0,Color,,1,1
+variation,Iphone-16-Pro-Red,Iphone 16 Pro - Red,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/Iphone 16 Pro _ Red.jpg,,,Iphone-16-Pro,,,,,,1,Color,Red,1,1
+variation,Iphone-16-Pro-blue,Iphone 16 Pro - blue,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/Iphone 16 Pro _ blue.jpg,,,Iphone-16-Pro,,,,,,2,Color,blue,1,1
+variable,iphone-17,iphone 17,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,"https://www.example.com/images/iphone_17_1.jpg, https://www.example.com/images/iphone_17_3.jpg, https://www.example.com/images/iphone_17_2.jpg",,,,,,,,,0,Color,,1,1
+variation,iphone-17-Red,iphone 17 - Red,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/iphone 17 _ 2.jpg,,,iphone-17,,,,,,1,Color,Red,1,1
+variation,iphone-17-Green,iphone 17 - Green,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/iphone 17 _ 3.jpg,,,iphone-17,,,,,,2,Color,Green,1,1
+variable,Iphone-of-Sahil,Iphone of Sahil,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,ht,,,,,,,,,0,Color,,1,1
+variation,Iphone-of-Sahil-Red,Iphone of Sahil - Red,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/Iphone of Sahil_4.jpg,,,Iphone-of-Sahil,,,,,,1,Color,Red,1,1
+variation,Iphone-of-Sahil-blue,Iphone of Sahil - blue,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/Iphone of Sahil_5.jpg,,,Iphone-of-Sahil,,,,,,2,Color,blue,1,1
+variation,Iphone-of-Sahil-grey,Iphone of Sahil - grey,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/Iphone of Sahil_6.jpg,,,Iphone-of-Sahil,,,,,,3,Color,grey,1,1
+variable,Product-420,Product 420,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,"https://www.example.com/images/Product_420_1.jpg, https://www.example.com/images/Product_420_2.jpg",,,,,,,,,0,Color,,1,1
+variation,Product-420-red,Product 420 - red,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/Product 420_3.jpg,,,Product-420,,,,,,1,Color,red,1,1
+variation,Product-420-green,Product 420 - green,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/Product 420_4.jpg,,,Product-420,,,,,,2,Color,green,1,1
+variable,Sansung,Sansung,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/Sansung_2.jpg,,,,,,,,,0,Color,,1,1
+variation,Sansung-red,Sansung - red,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/Sansung_2.jpg,,,Sansung,,,,,,1,Color,red,1,1
+variation,Sansung-green,Sansung - green,1,0,visible,,,,,taxable,,1,100,3,0,0,0,0,0,0,1,,,,,,,https://www.example.com/images/Sansung_3.jpg,,,Sansung,,,,,,2,Color,green,1,1
